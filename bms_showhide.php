@@ -29,18 +29,25 @@ function bms_showhide ($atts, $content=null)
 	extract( shortcode_atts( array(
       'label' => 'Read more&gt;&gt;',
 	  'readless' => false,
-	  'label_wrapper' => false,
+	  'label_wrapper' => 'p',
+	  'label_class' => false,
       ), $atts ) );
+	 
+	if (!(in_array($label_wrapper, array('b', 'u', 'i', 'big', 'small', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li')))) $label_wrapper = false;
 	$return = "<div class='bms-sh'>".$cr;
 	$return .= "<div class='bms-sh-label'>".$cr;
 	$content = ltrim($content, "</p>");
 	$content = rtrim($content, "<p>");
-	if ($label_wrapper) $return.= "<".$label_wrapper.">";
+	if ($label_wrapper) $return.= "<".$label_wrapper;
+	if ($label_class and $label_wrapper) $return .= " class='$label_class' ";
+	if ($label_wrapper) $return.= ">";
+	$return .= "<span class='bms-sh-before-label'></span>";
 	if ($readless) {
 		$return .= "<span class='bms-sh-more'>".$label."</span><span class='bms-sh-less'>".$readless."</span>".$cr;
 	} else {
 		$return .= $atts['label'];
 	}
+	$return .= "<span class='bms-sh-after-label'></span>";
 	if ($label_wrapper) $return.= "</".$label_wrapper.">";
 	// execute shortcodes in content
 	$content = do_shortcode($content);
