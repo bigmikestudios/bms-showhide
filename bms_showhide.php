@@ -12,7 +12,7 @@ Version: 0.0.1
 Author URI: http://bigmikestudios.com
 */
 
-$cr = "\r\n";
+$cr = "\r\n"; 
 
 // include stuff
 
