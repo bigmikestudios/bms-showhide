@@ -16,7 +16,6 @@ $cr = "\r\n";
 
 // include stuff
 
-
 wp_register_script('bms_showhide', plugins_url() .'/bms-showhide/bms_showhide.js', array('jquery'));
 wp_enqueue_script('bms_showhide');
 
