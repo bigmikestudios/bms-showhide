@@ -16,11 +16,17 @@ $cr = "\r\n";
 
 // include stuff
 
-wp_register_script('bms_showhide', plugins_url() .'/bms-showhide/bms_showhide.js', array('jquery'));
-wp_enqueue_script('bms_showhide');
+add_action('wp_enqueue_scripts', 'bms_showhide_script');
+function bms_showhide_script() {
+  wp_register_script('bms_showhide', plugins_url() .'/bms-showhide/bms_showhide.js', array('jquery'));
+  wp_enqueue_script('bms_showhide');
+}
 
-wp_register_style('bms_showhide', plugins_url() .'/bms-showhide/bms_showhide.css');
-wp_enqueue_style('bms_showhide');
+add_action('wp_print_styles', 'bms_showhide_css');
+function bms_showhide_css() {
+  wp_register_style('bms_showhide', plugins_url() .'/bms-showhide/bms_showhide.css');
+  wp_enqueue_style('bms_showhide');
+}
 
 // shortcode for readmore
 function bms_showhide ($atts, $content=null)
